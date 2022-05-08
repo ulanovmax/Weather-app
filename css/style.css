@@ -97,6 +97,69 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(90vh);
   }
 }
+.clouds {
+  bottom: 0;
+  left: 0;
+  padding-top: 100px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.shape {
+  background: #fff;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#fff", endColorstr="#f1f1f1",GradientType=0 );
+  border-radius: 100px;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 350px;
+  height: 110px;
+}
+.shape:after, .shape:before {
+  background: #fff;
+  content: "";
+  position: absolute;
+  z-index: 3;
+}
+.shape:after {
+  border-radius: 100px;
+  height: 100px;
+  left: 50px;
+  top: -50px;
+  width: 100px;
+}
+.shape:before {
+  border-radius: 200px;
+  width: 180px;
+  height: 180px;
+  right: 50px;
+  top: -90px;
+}
+
+.cloud_1 {
+  animation: clouds 35s linear infinite;
+  transform: scale(0.65);
+}
+
+.cloud_2 {
+  animation: clouds 20s linear infinite;
+  transform: scale(0.3);
+}
+
+.cloud_3 {
+  animation: clouds 30s linear infinite;
+  transform: scale(0.5);
+}
+
+@keyframes clouds {
+  0% {
+    margin-left: -1000px;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
 .details__item::before, .weather__icon {
   background-repeat: no-repeat;
   background-position: center;
@@ -115,6 +178,7 @@ h1, h2, h3, span {
 
 h1 {
   font-size: 50px;
+  margin-bottom: 16px;
 }
 @media screen and (min-width: 768px) {
   h1 {
@@ -129,6 +193,10 @@ h2 {
   h2 {
     font-size: 46px;
   }
+}
+
+h3 {
+  font-size: 35px;
 }
 
 p {
@@ -165,6 +233,7 @@ img {
   height: 100vh;
   padding: 50px 0;
   position: relative;
+  z-index: 100;
   transition: background 0.3s ease;
 }
 .forecast.sunny {
@@ -185,11 +254,17 @@ img {
   border-radius: 50%;
   background: linear-gradient(135deg, #FED100 3.21%, #E36001 85.28%);
 }
-.forecast.sunset .main_cloud rect {
-  fill: #6A6661;
+.forecast.sunset .cloud_1 .shape {
+  background: #6A6661;
 }
-.forecast.sunset .sm_cloud rect {
-  fill: #977272;
+.forecast.sunset .cloud_1 .shape:after, .forecast.sunset .cloud_1 .shape:before {
+  background: #6A6661;
+}
+.forecast.sunset .cloud_2 .shape, .forecast.sunset .cloud_3 .shape {
+  background: #977272;
+}
+.forecast.sunset .cloud_2 .shape:after, .forecast.sunset .cloud_2 .shape:before, .forecast.sunset .cloud_3 .shape:after, .forecast.sunset .cloud_3 .shape:before {
+  background: #977272;
 }
 .forecast.rainy {
   background: linear-gradient(180deg, #969696 0%, #DFFFFB 100%);
@@ -200,18 +275,17 @@ img {
 .forecast.rainy .weather__icon {
   display: none;
 }
-.forecast.rainy .main_cloud rect {
-  fill: #8D8989;
+.forecast.rainy .cloud_1 .shape {
+  background: #8D8989;
 }
-.forecast.rainy .md_cloud {
-  transform: translateX(0%);
-  opacity: 1;
+.forecast.rainy .cloud_1 .shape:after, .forecast.rainy .cloud_1 .shape:before {
+  background: #8D8989;
 }
-.forecast.rainy .md_cloud rect {
-  fill: #9F9F9F;
+.forecast.rainy .cloud_2 .shape, .forecast.rainy .cloud_3 .shape {
+  background: #9F9F9F;
 }
-.forecast.rainy .sm_cloud rect {
-  fill: #979494;
+.forecast.rainy .cloud_2 .shape:after, .forecast.rainy .cloud_2 .shape:before, .forecast.rainy .cloud_3 .shape:after, .forecast.rainy .cloud_3 .shape:before {
+  background: #9F9F9F;
 }
 .forecast.night {
   background: linear-gradient(180deg, #2E3338 0.01%, #28436B 100%);
@@ -219,50 +293,43 @@ img {
 .forecast.night .weather__icon {
   background-image: url("data:image/svg+xml,%3Csvg width='119' height='119' viewBox='0 0 119 119' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='59.5' cy='59.5' r='59.5' fill='%23FFF9BF'/%3E%3Ccircle cx='33.0556' cy='29.7498' r='6.61111' fill='%23D9D4A8'/%3E%3Cellipse cx='46.2778' cy='16.5277' rx='3.30556' ry='3.30556' fill='%23D9D4A8'/%3E%3Ccircle cx='71.0694' cy='28.0972' r='14.875' fill='%23D9D4A8'/%3E%3C/svg%3E");
 }
-.forecast.night .main_cloud rect {
-  fill: #151D28;
+.forecast.night .shape {
+  background: #151D28;
+  box-shadow: none;
+}
+.forecast.night .shape:after, .forecast.night .shape:before {
+  background: #151D28;
 }
 .forecast.night .stars {
   opacity: 1;
   visibility: visible;
 }
-
-.clouds {
-  position: fixed;
-  top: 3rem;
-  right: 65rem;
+.forecast.night .search {
+  background: linear-gradient(252.44deg, #294061 0%, rgba(255, 255, 255, 0) 100%);
 }
-.clouds svg {
-  position: absolute;
+.forecast.night .search__input {
+  background: #fff;
 }
-.clouds rect {
-  transition: fill 0.3s ease;
-}
-
-.main_cloud {
-  left: 2rem;
-  top: 2rem;
-}
-
-.sm_cloud {
-  top: 150px;
-  left: -100px;
-}
-
-.md_cloud {
-  top: 180px;
-  left: 68px;
-  z-index: 10;
-  transform: translateX(150%);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+.forecast.night .search__btn {
+  background-color: #bbe8ff;
 }
 
 .stars {
+  position: absolute;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   opacity: 0;
   visibility: hidden;
-  left: -40rem;
+  left: 32rem;
+  top: 5rem;
+  z-index: -1;
+}
+
+.date__info {
+  margin-bottom: 76px;
+}
+
+.calendar_day {
+  margin-top: 8px;
 }
 
 .city__info {
@@ -273,7 +340,8 @@ img {
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 9rem;
+  top: 8rem;
+  right: 46rem;
   z-index: 5;
 }
 @media screen and (min-width: 768px) {
@@ -358,30 +426,68 @@ img {
   right: 0;
   height: 100%;
   width: 100%;
-  max-width: 500px;
-  padding: 50px 62px 0 120px;
-  background: rgba(255, 255, 255, 0.1);
+  max-width: 550px;
+  padding: 50px 62px 0 60px;
+  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
   backdrop-filter: blur(30px);
   z-index: 999;
+  border-radius: 5% 0 0 0;
 }
 
 .search__item {
   position: relative;
+  display: flex;
   margin-bottom: 100px;
-}
-.search__item label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 18px;
-  color: #89B7CF;
 }
 
 .search__input {
-  background: url("data:image/svg+xml,%3Csvg width='23' height='23' viewBox='0 0 23 23' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.7498 21.7498L16.89 16.8813L21.7498 21.7498ZM19.5832 10.3748C19.5832 12.817 18.613 15.1592 16.8861 16.8861C15.1592 18.613 12.817 19.5832 10.3748 19.5832C7.93263 19.5832 5.59046 18.613 3.86356 16.8861C2.13666 15.1592 1.1665 12.817 1.1665 10.3748C1.1665 7.93263 2.13666 5.59046 3.86356 3.86356C5.59046 2.13666 7.93263 1.1665 10.3748 1.1665C12.817 1.1665 15.1592 2.13666 16.8861 3.86356C18.613 5.59046 19.5832 7.93263 19.5832 10.3748V10.3748Z' stroke='%233A92CD' stroke-opacity='0.37' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 100% 0;
-  border-bottom: 1px solid rgba(0, 6, 57, 0.96);
+  height: 50px;
+  border-radius: 18px 0 0 18px;
   width: 100%;
-  padding-bottom: 15px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: #64729A;
+  background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
+}
+.search__input::placeholder {
+  font-size: 15px;
+  color: #64729A;
+}
+
+.search__btn {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.5665 12.9458C9.6408 12.9458 12.133 10.2717 12.133 6.97291C12.133 3.67416 9.6408 1 6.5665 1C3.49221 1 1 3.67416 1 6.97291C1 10.2717 3.49221 12.9458 6.5665 12.9458Z' stroke='%2397A0B9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.0274 16.0519L10.8525 11.5723' stroke='%2397A0B9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  height: 50px;
+  width: 55px;
+  border-radius: 0 18px 18px 0;
+}
+
+.city__list {
+  display: grid;
+  gap: 25px;
+}
+
+.city__list_item {
+  height: 50px;
+  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+
+.city_name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.city_list_deg {
+  font-size: 18px;
+  color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */

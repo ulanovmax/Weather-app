@@ -26,6 +26,7 @@ h1,h2,h3,span {
 
 h1 {
   font-size: 50px;
+  margin-bottom: 16px;
   @media screen and (min-width: 768px) {
     font-size: 60px;
   }
@@ -36,6 +37,10 @@ h2 {
   @media screen and (min-width: 768px) {
     font-size: 46px;
   }
+}
+
+h3 {
+  font-size: 35px;
 }
 
 p {
@@ -70,6 +75,7 @@ img {
   height: 100vh;
   padding: 50px 0;
   position: relative;
+  z-index: 100;
   @include transition(background, ease);
 
   // Sunny Weather
@@ -92,14 +98,23 @@ img {
       border-radius: 50%;
       background: linear-gradient(135deg, #FED100 3.21%, #E36001 85.28%);;
     }
-    .main_cloud {
-      rect {
-        fill: #6A6661;
+    
+    .cloud_1 {
+      .shape {
+        background: #6A6661;
+        &:after,
+        &:before {
+          background: #6A6661;
+        }
       }
     }
-    .sm_cloud {
-      rect {
-        fill: #977272;
+    .cloud_2,.cloud_3 {
+      .shape {
+        background: #977272;
+        &:after,
+        &:before {
+          background: #977272;
+        }
       }
     }
     
@@ -114,24 +129,24 @@ img {
     .weather__icon {
       display: none;
     }
-    .main_cloud {
-      rect {
-        fill: #8D8989;
+    .cloud_1 {
+      .shape {
+        background: #8D8989;
+        &:after,
+        &:before {
+          background: #8D8989;
+        }
       }
     }
-    .md_cloud {
-      transform: translateX(0%);
-      opacity: 1;
-      rect {
-        fill: #9F9F9F;
+    .cloud_2,.cloud_3 {
+      .shape {
+        background: #9F9F9F;
+        &:after,
+        &:before {
+          background: #9F9F9F;
+        }
       }
     }
-    .sm_cloud {
-      rect {
-        fill: #979494;
-      }
-    }
-    
   }
 
   // Night Weather
@@ -140,62 +155,48 @@ img {
     .weather__icon{
       background-image: url("data:image/svg+xml,%3Csvg width='119' height='119' viewBox='0 0 119 119' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='59.5' cy='59.5' r='59.5' fill='%23FFF9BF'/%3E%3Ccircle cx='33.0556' cy='29.7498' r='6.61111' fill='%23D9D4A8'/%3E%3Cellipse cx='46.2778' cy='16.5277' rx='3.30556' ry='3.30556' fill='%23D9D4A8'/%3E%3Ccircle cx='71.0694' cy='28.0972' r='14.875' fill='%23D9D4A8'/%3E%3C/svg%3E");
     }
-    .main_cloud {
-      rect {
-        fill: #151D28;
+    .shape {
+      background: #151D28;
+      box-shadow: none;
+      &:after,
+      &:before {
+        background: #151D28;
       }
     }
     .stars {
       opacity: 1;
       visibility: visible;
     }
-    
+    .search {
+      background: linear-gradient(252.44deg, rgb(41 64 97) 0%, rgb(255 255 255 / 0%) 100%);
+    }
+    .search__input {
+      background: #fff;
+    }
+    .search__btn {
+      background-color: #bbe8ff;
+    }
   }
-}
-
-.clouds {
-  position: fixed;
-  top: 3rem;
-  right: 65rem;
-  svg {
-    position: absolute;
-  }
-  rect {
-    @include transition(fill, ease)
-  }
-}
-
-.main_cloud {
-  left: 2rem;
-  top: 2rem;
-}
-
-.sm_cloud {
-  top: 150px;
-  left: -100px;
-}
-
-.md_cloud {
-  top: 180px;
-  left: 68px;
-  z-index: 10;
-  transform: translateX(150%);
-  opacity: 0;
-  transition: opacity $trans ease, transform $trans ease;
 }
 
 .stars {
+  position: absolute;
   transition: opacity $trans ease, visibility $trans ease;
   opacity: 0;
   visibility: hidden;
-  left: -40rem;
+  left: 32rem;
+  top: 5rem;
+  z-index: -1;
 }
 
-.content__wrapper {
+.date__info {
+  margin-bottom: 76px;
 }
 
-.weather__info {
+.calendar_day {
+  margin-top: 8px;
 }
+
 
 .city__info {
   margin-bottom: 40px;
@@ -205,22 +206,10 @@ img {
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 9rem;
+  top: 8rem;
+  right: 46rem;
   z-index: 5;
   @extend %bg;
-  // &.sunny {
-  //   background-image: url("data:image/svg+xml,%3Csvg width='144' height='136' viewBox='0 0 144 136' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M68.5 0.25C31.1187 0.25 0.8125 30.5562 0.8125 67.9375C0.8125 105.319 31.1187 135.625 68.5 135.625C105.881 135.625 136.188 105.319 136.188 67.9375C136.188 30.5562 105.881 0.25 68.5 0.25Z' fill='%23FED100'/%3E%3Cpath opacity='0.05' d='M121.93 69.6654C113.37 52.2733 80.9829 53.7089 74.3139 77.2784C48.8171 78.1691 46.6368 120.848 72.0624 120.41C75.1155 120.41 95.4253 120.41 111.232 120.41C125.208 109.013 134.477 92.1412 135.91 73.0676C133.33 70.7021 126.661 68.7178 121.93 69.6654Z' fill='black'/%3E%3Cpath opacity='0.07' d='M121.67 70.3385C112.429 53.0211 81.1362 55.5006 75.0907 77.752C51.3288 78.5358 50.1104 116.964 73.8402 117.168C77.0109 117.196 100.648 117.168 114.471 117.168C126.448 106.309 134.388 91.0401 135.842 73.9188C132.828 71.3146 126.558 69.4514 121.67 70.3385Z' fill='black'/%3E%3Cpath opacity='0.07' d='M121.41 71.012C111.485 53.766 81.2859 57.2893 75.8709 78.2261C53.844 78.903 53.591 113.737 75.6251 113.929C78.9133 113.958 105.874 113.929 117.716 113.929C127.698 103.609 134.307 89.9431 135.782 74.7776C132.326 71.9311 126.451 70.1855 121.41 71.012Z' fill='black'/%3E%3Cpath d='M123.719 71.5C122.846 71.5 121.994 71.5784 121.15 71.6888C116.658 65.1231 109.116 60.8125 100.562 60.8125C89.2409 60.8125 79.6934 68.365 76.651 78.6998C68.158 79.1024 61.375 86.0599 61.375 94.6562C61.375 103.509 68.5534 110.688 77.4062 110.688C81.2716 110.688 119.711 110.688 123.719 110.688C134.542 110.688 143.312 101.917 143.312 91.0938C143.312 80.2709 134.542 71.5 123.719 71.5Z' fill='url(%23paint0_linear_105_1963)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_105_1963' x1='87.6413' y1='59.6298' x2='117.092' y2='125.458' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FCFCFC'/%3E%3Cstop offset='1' stop-color='%23C3C9CD'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
-  // }
-  // &.sunset {
-  //   background-image: url("data:image/svg+xml,%3Csvg width='144' height='136' viewBox='0 0 144 136' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M68.5 0.25C31.1187 0.25 0.8125 30.5562 0.8125 67.9375C0.8125 105.319 31.1187 135.625 68.5 135.625C105.881 135.625 136.188 105.319 136.188 67.9375C136.188 30.5562 105.881 0.25 68.5 0.25Z' fill='url(%23paint0_linear_105_1964)'/%3E%3Cpath opacity='0.05' d='M121.93 69.6654C113.37 52.2733 80.983 53.7089 74.314 77.2784C48.8172 78.1691 46.637 120.848 72.0625 120.41C75.1156 120.41 95.4254 120.41 111.232 120.41C125.208 109.013 134.478 92.1412 135.91 73.0676C133.33 70.7021 126.661 68.7178 121.93 69.6654Z' fill='black'/%3E%3Cpath opacity='0.07' d='M121.67 70.3385C112.429 53.0211 81.1362 55.5006 75.0907 77.752C51.3288 78.5358 50.1104 116.964 73.8402 117.168C77.0109 117.196 100.648 117.168 114.471 117.168C126.448 106.309 134.388 91.0401 135.842 73.9188C132.828 71.3146 126.558 69.4514 121.67 70.3385Z' fill='black'/%3E%3Cpath opacity='0.07' d='M121.41 71.012C111.485 53.766 81.2858 57.2893 75.8708 78.2261C53.8439 78.903 53.5909 113.737 75.625 113.929C78.9132 113.958 105.874 113.929 117.716 113.929C127.698 103.609 134.307 89.9431 135.781 74.7776C132.326 71.9311 126.451 70.1855 121.41 71.012Z' fill='black'/%3E%3Cpath d='M123.719 71.5C122.846 71.5 121.994 71.5784 121.15 71.6888C116.658 65.1231 109.116 60.8125 100.562 60.8125C89.2409 60.8125 79.6934 68.365 76.651 78.6998C68.158 79.1024 61.375 86.0599 61.375 94.6562C61.375 103.509 68.5534 110.688 77.4062 110.688C81.2716 110.688 119.711 110.688 123.719 110.688C134.542 110.688 143.312 101.917 143.312 91.0938C143.312 80.2709 134.542 71.5 123.719 71.5Z' fill='url(%23paint1_linear_105_1964)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_105_1964' x1='5.16231' y1='4.59981' x2='116.266' y2='115.704' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FED100'/%3E%3Cstop offset='1' stop-color='%23E36001'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_105_1964' x1='87.6413' y1='59.6298' x2='117.092' y2='125.458' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FCFCFC'/%3E%3Cstop offset='1' stop-color='%23C3C9CD'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
-  // }
-  // &.moon{
-  //   background-image: url("data:image/svg+xml,%3Csvg width='119' height='119' viewBox='0 0 119 119' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='59.5' cy='59.5' r='59.5' fill='%23FFF9BF'/%3E%3Ccircle cx='33.0556' cy='29.7498' r='6.61111' fill='%23D9D4A8'/%3E%3Cellipse cx='46.2778' cy='16.5277' rx='3.30556' ry='3.30556' fill='%23D9D4A8'/%3E%3Ccircle cx='71.0694' cy='28.0972' r='14.875' fill='%23D9D4A8'/%3E%3C/svg%3E");
-  // }
-  // &.rainy{
-  //   background-image: url("data:image/svg+xml,%3Csvg width='148' height='90' viewBox='0 0 148 90' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M112.609 19.2857C111.032 19.2857 109.494 19.4271 107.969 19.6264C99.855 7.77857 86.2325 0 70.7826 0C50.3329 0 33.0877 13.6286 27.5923 32.2779C12.2518 33.0043 0 45.5593 0 61.0714C0 77.0464 12.9661 90 28.9565 90C35.9383 90 105.37 90 112.609 90C132.158 90 148 74.1729 148 54.6429C148 35.1129 132.158 19.2857 112.609 19.2857Z' fill='url(%23paint0_linear_102_427)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_102_427' x1='47.4437' y1='-2.13429' x2='100.554' y2='116.691' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FCFCFC'/%3E%3Cstop offset='1' stop-color='%23C3C9CD'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
-  // }
-
   @media screen and (min-width: 768px) {
     width: 136px;
     height: 136px;
@@ -253,7 +242,6 @@ img {
     margin: 0 20px; 
   }
 }
-
 
 .weather__details {
   display: flex;
@@ -304,35 +292,66 @@ img {
   right: 0;
   height: 100%;
   width: 100%;
-  max-width: 500px;
-  padding: 50px 62px 0 120px;
-  background: rgba(255, 255, 255, 0.1);
+  max-width: 550px;
+  padding: 50px 62px 0 60px;
+  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
   backdrop-filter: blur(30px);
   z-index: 999;
+  border-radius: 5% 0 0 0;
 }
 
 .search__item {
   position: relative;
-  label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 18px;
-    color: #89B7CF;
-  }
+  display: flex;
   margin-bottom: 100px;
 }
 
 .search__input {
-  background: url("data:image/svg+xml,%3Csvg width='23' height='23' viewBox='0 0 23 23' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.7498 21.7498L16.89 16.8813L21.7498 21.7498ZM19.5832 10.3748C19.5832 12.817 18.613 15.1592 16.8861 16.8861C15.1592 18.613 12.817 19.5832 10.3748 19.5832C7.93263 19.5832 5.59046 18.613 3.86356 16.8861C2.13666 15.1592 1.1665 12.817 1.1665 10.3748C1.1665 7.93263 2.13666 5.59046 3.86356 3.86356C5.59046 2.13666 7.93263 1.1665 10.3748 1.1665C12.817 1.1665 15.1592 2.13666 16.8861 3.86356C18.613 5.59046 19.5832 7.93263 19.5832 10.3748V10.3748Z' stroke='%233A92CD' stroke-opacity='0.37' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 100% 0;
-  border-bottom: 1px solid rgba(0, 6, 57, 0.96);
+  height: 50px;
+  border-radius: 18px 0 0 18px;
   width: 100%;
-  padding-bottom: 15px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: #64729A;
+  background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
+  &::placeholder {
+    font-size: 15px;
+    color: #64729A;
+  }
+}
+
+.search__btn {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.5665 12.9458C9.6408 12.9458 12.133 10.2717 12.133 6.97291C12.133 3.67416 9.6408 1 6.5665 1C3.49221 1 1 3.67416 1 6.97291C1 10.2717 3.49221 12.9458 6.5665 12.9458Z' stroke='%2397A0B9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.0274 16.0519L10.8525 11.5723' stroke='%2397A0B9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");  
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  height: 50px;
+  width: 55px;
+  border-radius: 0 18px 18px 0;
 }
 
 .city__list {
+  display: grid;
+  gap: 25px;
 }
+
 .city__list_item {
+  height: 50px;
+  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
 }
+
 .city_name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.city_list_deg {
+  font-size: 18px;
+  color: #fff;
 }

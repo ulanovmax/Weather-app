@@ -18,12 +18,19 @@
 </head>
 <body>
 
-  <main class="forecast rainy">
+  <main class="forecast night">
     <div class="container">
       <div class="content__wrapper">
         <section class="weather__info">
+          
           <div class="city__info">
             <h1>London</h1>
+            <div class="date__info">
+              <h3>7:00 AM</h3>
+              <p class="calendar_day">
+                Friday 5th, 2022
+              </p>
+            </div>
             <div class="forecast__info">
               <h2 class="deg">18 &deg</h2>
               <p>Clear Sky</p>
@@ -52,84 +59,58 @@
 
           <div class="clouds">
             <div class="weather__icon"></div>
-            <svg class="main_cloud" width="211" height="129" viewBox="0 0 211 129" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_d_103_1672)">
-                <rect width="181" height="72.2478" rx="36.1239" transform="matrix(-1 0 0 1 190 35.1768)" fill="white"/>
-                <rect width="100.05" height="97.3775" rx="48.6887" transform="matrix(-1 0 0 1 139.975 9)" fill="white"/>
-              </g>
-              <defs>
-              <filter id="filter0_d_103_1672" x="0" y="0" width="211" height="128.425" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dx="6" dy="6"/>
-                <feGaussianBlur stdDeviation="7.5"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_103_1672"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_103_1672" result="shape"/>
-              </filter>
-              </defs>
-            </svg>    
-            <svg class="sm_cloud" width="119" height="84" viewBox="0 0 119 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.71" filter="url(#filter0_d_103_1666)">
-                <rect x="9" y="23.3618" width="88.8405" height="39.6383" rx="19.8191" fill="white"/>
-                <rect x="33.5537" y="9" width="49.1078" height="53.4255" rx="24.5539" fill="white"/>
-              </g>
-              <defs>
-              <filter id="filter0_d_103_1666" x="0" y="0" width="118.841" height="84" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dx="6" dy="6"/>
-                <feGaussianBlur stdDeviation="7.5"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_103_1666"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_103_1666" result="shape"/>
-              </filter>
-              </defs>
+            <div class="cloud_1">
+              <div class="shape"></div>
+            </div>
+        
+            <div class="cloud_2">
+                <div class="shape"></div>
+            </div>
+        
+            <div class="cloud_3">
+                <div class="shape"></div>
+            </div>
+        
+            <svg class="stars" width="579" height="263" viewBox="0 0 579 263" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M530.5 241L528.816 246.182H523.367L527.775 249.385L526.092 254.568L530.5 251.365L534.908 254.568L533.225 249.385L537.633 246.182H532.184L530.5 241Z" fill="white"/>
+              <path d="M238.5 248L236.816 253.182H231.367L235.775 256.385L234.092 261.568L238.5 258.365L242.908 261.568L241.225 256.385L245.633 253.182H240.184L238.5 248Z" fill="white"/>
+              <path d="M566.5 64L563.694 72.6373H554.612L561.959 77.9754L559.153 86.6127L566.5 81.2746L573.847 86.6127L571.041 77.9754L578.388 72.6373H569.306L566.5 64Z" fill="white"/>
+              <path d="M296.5 10L294.816 15.1824H289.367L293.775 18.3853L292.092 23.5676L296.5 20.3647L300.908 23.5676L299.225 18.3853L303.633 15.1824H298.184L296.5 10Z" fill="white"/>
+              <path d="M65.5 10L63.8161 15.1824H58.3671L62.7755 18.3853L61.0916 23.5676L65.5 20.3647L69.9084 23.5676L68.2245 18.3853L72.6329 15.1824H67.1839L65.5 10Z" fill="white"/>
+              <path d="M207.5 110L205.816 115.182H200.367L204.775 118.385L203.092 123.568L207.5 120.365L211.908 123.568L210.225 118.385L214.633 115.182H209.184L207.5 110Z" fill="white"/>
+              <path d="M464 0L462.877 3.45492H459.245L462.184 5.59017L461.061 9.04508L464 6.90983L466.939 9.04508L465.816 5.59017L468.755 3.45492H465.123L464 0Z" fill="white"/>
+              <path d="M27.6458 201.235L18.9626 203.896L13.7486 196.46L13.5961 205.54L4.91289 208.201L13.5018 211.152L13.3493 220.233L18.8101 212.976L27.3991 215.927L22.185 208.491L27.6458 201.235Z" fill="white"/>
+              <path d="M105.018 116.905L101.544 117.969L99.4588 114.995L99.3978 118.627L95.9245 119.691L99.3601 120.872L99.2991 124.504L101.483 121.601L104.919 122.782L102.833 119.807L105.018 116.905Z" fill="white"/>
             </svg>
-            <svg class="md_cloud" width="179" height="85" viewBox="0 0 179 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.38" filter="url(#filter0_d_103_1669)">
-                <rect x="9" y="23.6274" width="149" height="40.3724" rx="20.1862" fill="white"/>
-                <rect x="50.1812" y="9" width="82.3618" height="54.4149" rx="27.2075" fill="white"/>
-              </g>
-              <defs>
-              <filter id="filter0_d_103_1669" x="0" y="0" width="179" height="85" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dx="6" dy="6"/>
-                <feGaussianBlur stdDeviation="7.5"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_103_1669"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_103_1669" result="shape"/>
-              </filter>
-              </defs>
-            </svg>    
-            <svg class="stars" width="825" height="263" viewBox="0 0 825 263" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M776.5 241L774.816 246.182H769.367L773.775 249.385L772.092 254.568L776.5 251.365L780.908 254.568L779.225 249.385L783.633 246.182H778.184L776.5 241Z" fill="white"/>
-              <path d="M484.5 248L482.816 253.182H477.367L481.775 256.385L480.092 261.568L484.5 258.365L488.908 261.568L487.225 256.385L491.633 253.182H486.184L484.5 248Z" fill="white"/>
-              <path d="M812.5 64L809.694 72.6373H800.612L807.959 77.9754L805.153 86.6127L812.5 81.2746L819.847 86.6127L817.041 77.9754L824.388 72.6373H815.306L812.5 64Z" fill="white"/>
-              <path d="M542.5 10L540.816 15.1824H535.367L539.775 18.3853L538.092 23.5676L542.5 20.3647L546.908 23.5676L545.225 18.3853L549.633 15.1824H544.184L542.5 10Z" fill="white"/>
-              <path d="M311.5 10L309.816 15.1824H304.367L308.775 18.3853L307.092 23.5676L311.5 20.3647L315.908 23.5676L314.225 18.3853L318.633 15.1824H313.184L311.5 10Z" fill="white"/>
-              <path d="M453.5 110L451.816 115.182H446.367L450.775 118.385L449.092 123.568L453.5 120.365L457.908 123.568L456.225 118.385L460.633 115.182H455.184L453.5 110Z" fill="white"/>
-              <path d="M710 0L708.877 3.45492H705.245L708.184 5.59017L707.061 9.04508L710 6.90983L712.939 9.04508L711.816 5.59017L714.755 3.45492H711.123L710 0Z" fill="white"/>
-              <path d="M273.646 201.235L264.963 203.896L259.749 196.46L259.596 205.54L250.913 208.201L259.502 211.152L259.349 220.233L264.81 212.976L273.399 215.927L268.185 208.491L273.646 201.235Z" fill="white"/>
-              <path d="M351.018 116.905L347.544 117.969L345.459 114.995L345.398 118.627L341.925 119.691L345.36 120.872L345.299 124.504L347.483 121.601L350.919 122.782L348.833 119.807L351.018 116.905Z" fill="white"/>
-            </svg>
+              
+            <!-- <div class="cloud_4">
+                <div class="shape"></div>
+            </div>
+        
+            <div class="cloud_5">
+                <div class="shape"></div>
+            </div> -->
           </div>
-          
         </section>
 
         <section class="search">
           <div class="search__item">
-            <input type="text" class="search__input" id="search__input" name="search__input">
-            <label for="search__input">Search your city</label>
+            <input type="text" class="search__input" id="search__input" name="search__input" placeholder="Search your city">
+            <button type="button" class="search__btn"></button>
           </div>
           <ul class="city__list">
-            <li class="city__list_item">
+            <a href="#" class="city__list_item">
               <p class="city_name">New York</p>
-            </li>
+              <span class="city_list_deg">18&deg</span>
+            </a>
+            <a href="#" class="city__list_item">
+              <p class="city_name">Amsterdam</p>
+              <span class="city_list_deg">18&deg</span>
+            </a>
+            <a href="#" class="city__list_item">
+              <p class="city_name">Madrid</p>
+              <span class="city_list_deg">18&deg</span>
+            </a>
           </ul>
         </section>
       </div>
@@ -143,6 +124,6 @@
   </footer>
 
 
-  <script src="js/script.js"></script>
+  <script async src="js/script.js"></script>
 </body>
 </html>
