@@ -18,6 +18,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: #fff;
+  overflow: hidden;
 }
 
 h1,h2,h3,span {
@@ -69,7 +70,7 @@ img {
   }
 }
 
-// Forecast Section
+// Weather Conditions
 
 .forecast {
   height: 100vh;
@@ -179,6 +180,8 @@ img {
   }
 }
 
+// Stars
+
 .stars {
   position: absolute;
   transition: opacity $trans ease, visibility $trans ease;
@@ -189,6 +192,8 @@ img {
   z-index: -1;
 }
 
+// Main Content
+
 .date__info {
   margin-bottom: 76px;
 }
@@ -196,7 +201,6 @@ img {
 .calendar_day {
   margin-top: 8px;
 }
-
 
 .city__info {
   margin-bottom: 40px;
@@ -286,6 +290,8 @@ img {
   }
 }
 
+// Search Section
+
 .search {
   position: fixed;
   top: 0;
@@ -294,10 +300,10 @@ img {
   width: 100%;
   max-width: 550px;
   padding: 50px 62px 0 60px;
-  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
   backdrop-filter: blur(30px);
   z-index: 999;
   border-radius: 5% 0 0 0;
+  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
 }
 
 .search__item {
@@ -337,12 +343,16 @@ img {
 
 .city__list_item {
   height: 50px;
-  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
   border-radius: 18px;
+  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 25px;
+  @include transition(background, ease);
+  &:hover {
+    background: #66B7E1;
+  }
 }
 
 .city_name {

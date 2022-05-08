@@ -84,6 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  z-index: 100;
 }
 
 @keyframes rain {
@@ -91,10 +92,10 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0vh);
   }
   75% {
-    transform: translateY(90vh);
+    transform: translateY(150vh);
   }
   100% {
-    transform: translateY(90vh);
+    transform: translateY(150vh);
   }
 }
 .clouds {
@@ -170,6 +171,7 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #fff;
+  overflow: hidden;
 }
 
 h1, h2, h3, span {
@@ -428,10 +430,10 @@ img {
   width: 100%;
   max-width: 550px;
   padding: 50px 62px 0 60px;
-  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
   backdrop-filter: blur(30px);
   z-index: 999;
   border-radius: 5% 0 0 0;
+  background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
 }
 
 .search__item {
@@ -471,12 +473,16 @@ img {
 
 .city__list_item {
   height: 50px;
-  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
   border-radius: 18px;
+  background: linear-gradient(269.42deg, #0086C1 -1.71%, rgba(0, 140, 202, 0.3) 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 25px;
+  transition: background 0.3s ease;
+}
+.city__list_item:hover {
+  background: #66B7E1;
 }
 
 .city_name {
