@@ -9,8 +9,6 @@ const weather = document.querySelector('.forecast'),
       searchInput = weather.querySelector('.search__input'),
       searchBtn = weather.querySelector('.search__btn');
 
-// let city = 'Odessa';
-
 searchInput.addEventListener('keydown', e => {
   if (e.key == 'Enter') {
     searchCity()
@@ -46,7 +44,7 @@ function capitalize(str) {
 }
 
 function initWeather(city = 'Odessa') {
-  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
     .then(res => res.json())
     .then(data => {
 
@@ -93,7 +91,7 @@ initWeather()
 const cityItems = weather.querySelector('.city__list');
 
 function cityList(city, i) {
-  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
     .then(res => res.json())
     .then(data => {
       const names = weather.querySelectorAll('.city_name');
@@ -176,7 +174,6 @@ if (hour >= 21) {
 if (hour >= 0 && hour < 5) {
   weather.classList.add('night');
 }
-
 
 // Rain Animation
 
