@@ -18,7 +18,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: #fff;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 h1,h2,h3,span {
@@ -26,8 +26,9 @@ h1,h2,h3,span {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 45px;
   margin-bottom: 16px;
+  text-shadow: 0 0 black;
   @media screen and (min-width: 768px) {
     font-size: 60px;
   }
@@ -41,12 +42,16 @@ h2 {
 }
 
 h3 {
-  font-size: 35px;
+  font-size: 30px;
+  @media screen and (min-width: 768px) {
+    font-size: 35px;
+  }
 }
 
 p {
   font-size: 20px;
   line-height: 30px;
+  text-shadow: 0 0 black;
   @media screen and (min-width: 768px) {
     font-size: 25px;
   }
@@ -70,18 +75,72 @@ img {
   }
 }
 
+.ham_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  width: 40px;
+  height: 40px;
+  background: none;
+  z-index: 1000;
+  position: relative;
+  span {
+    background: #fff;
+    border-radius: 8px;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    transition: top $trans ease-in-out 0.4s, transform 0.4s ease-in-out, opacity $trans ease-in-out $trans, left $trans ease-in-out;
+    &:nth-child(1) {
+      top: 0;
+    }
+    &:nth-child(2), &:nth-child(4) {
+      top: 12px;
+    }
+    &:nth-child(3) {
+      top: 24px;
+    }
+  }
+  &.open {
+    span {
+      &:nth-child(1) {
+        top: 12px;
+        transform: rotate((360+45) + 0deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        top: 12px;
+        transform: rotate((360-45) + 0deg);
+      }
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+
 // Weather Conditions
 
 .forecast {
-  height: 100vh;
-  padding: 50px 0;
+  padding: 30px 0;
   position: relative;
   z-index: 100;
   @include transition(background, ease);
+  @media screen and (min-width: 360px) {
+    height: 100vh;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 50px 0;
+  }
 
   // Sunny Weather
   &.sunny {
-    background: linear-gradient(180deg, #7CB8FF 0%, #DFFFFB 100%);
+    background: linear-gradient(180deg, #7CB8FF 0%, #DFFFFB 125%);
     .weather__icon {
       border-radius: 50%;
       background: #FED100;
@@ -93,7 +152,7 @@ img {
   }
 
   // Snow
-  &.snow {
+  &.snowy {
     background: linear-gradient(180deg, #347BCF 0%, #97c1ff 56.77%);
   }
 
@@ -208,7 +267,11 @@ img {
 // Main Content
 
 .date__info {
-  margin-bottom: 76px;
+  text-shadow: 0 0 black;
+  margin-bottom: 36px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 76px;
+  }
 }
 
 .calendar_day {
@@ -216,7 +279,7 @@ img {
 }
 
 .city__info {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 
 .weather__icon {
@@ -224,12 +287,24 @@ img {
   width: 100px;
   height: 100px;
   top: 8rem;
-  right: 46rem;
+  right: 3rem;
   z-index: 5;
   @extend %bg;
+  @media screen and (min-width: 640px) {
+    right: 12rem;
+  }
   @media screen and (min-width: 768px) {
     width: 136px;
     height: 136px;
+  }
+  @media screen and (min-width: 1024px) {
+    right: 40rem;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 46rem;
+  }
+  @media screen and (min-width: 1536px) {
+    right: 56rem;
   }
 }
 
@@ -243,7 +318,10 @@ img {
 .feels__item {
   display: flex;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 70px;
+  }
 }
 
 .feels_like {
@@ -263,8 +341,12 @@ img {
 .weather__details {
   display: flex;
   align-items: center;
-  gap: 80px;
-  font-size: 20px;
+  gap: 32px;
+  font-size: 16px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    gap: 80px;
+  }
 }
 
 .details__item {
@@ -275,6 +357,10 @@ img {
     display: block;
     @extend %bg;
     height: 48px;
+    max-width: 45%;
+    @media screen and (min-width: 768px) {
+      max-width: 100%;
+    }
   }
   &.humidity::before{
     width: 34px;
@@ -288,6 +374,7 @@ img {
     width: 50px;
     background-image: url("data:image/svg+xml,%3Csvg width='76' height='76' viewBox='0 0 76 76' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M59.375 4.75L56.0168 8.10825L62.1585 14.25H50.0698C44.9326 14.2459 39.8422 15.2262 35.074 17.138L24.9114 21.2016C20.7059 22.8884 16.2161 23.7534 11.685 23.75H4.75V28.5H11.6803C16.8174 28.5041 21.9078 27.5238 26.676 25.612L36.8386 21.5484C41.0441 19.8616 45.5339 18.9966 50.065 19H62.1538L56.012 25.1418L59.375 28.5L71.25 16.625L59.375 4.75Z' fill='white'/%3E%3Cpath d='M49.875 26.125L46.5168 29.4832L52.6585 35.625H44.8923C40.0497 35.6222 35.2465 36.4935 30.7135 38.1971L24.6193 40.4819C20.62 41.9845 16.3823 42.7529 12.1101 42.75H4.75V47.5H12.1101C16.9518 47.5025 21.7543 46.6312 26.2865 44.9279L32.3807 42.6431C36.38 41.1405 40.6176 40.3721 44.8899 40.375H52.6561L46.5168 46.5168L49.875 49.875L61.75 38L49.875 26.125Z' fill='white'/%3E%3Cpath d='M40.375 47.5L37.0168 50.8582L43.1585 57H39.4179C35.0774 56.9989 30.7652 57.6982 26.6475 59.071L24.0991 59.9212C20.4663 61.1331 16.6617 61.7506 12.8321 61.75H4.75V66.5H12.8321C17.1726 66.5011 21.4848 65.8018 25.6025 64.429L28.1509 63.5788C31.7837 62.3669 35.5883 61.7494 39.4179 61.75H43.1585L37.0168 67.8918L40.375 71.25L52.25 59.375L40.375 47.5Z' fill='white'/%3E%3C/svg%3E");
   }
+  
 }
 
 .details__name {
@@ -308,15 +395,39 @@ img {
 .search {
   position: fixed;
   top: 0;
-  right: 0;
   height: 100%;
   width: 100%;
-  max-width: 550px;
-  padding: 50px 62px 0 60px;
+  max-width: 100%;
+  padding: 100px 20px;
   backdrop-filter: blur(30px);
   z-index: 999;
-  border-radius: 5% 0 0 0;
   background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
+  visibility: hidden;
+  right: -100%;
+  transition: right $trans ease, visibility $trans ease;
+  &.show {
+    visibility: visible;
+    right: 0;
+  }
+  @media screen and (min-width: 480px) {
+    padding: 100px 50px;
+  }
+  @media screen and (min-width: 640px) {
+    padding: 100px 60px;
+    max-width: 460px;
+    border-radius: 5% 0 0 0;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 120px 60px;
+  }
+  @media screen and (min-width: 1024px) {
+    visibility: visible;
+    right: 0;
+    padding-top: 50px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 550px;
+  }
 }
 
 .search__item {

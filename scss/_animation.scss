@@ -7,23 +7,11 @@
   position: absolute;
   bottom: 100%;
   transform-origin: 100% 50%;
-  animation-name: rain;
+  animation-name: drops;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   z-index: 100;
-}
-
-@keyframes rain {
-  0% {
-    transform: translateY(0vh);
-  }
-  75% {
-    transform: translateY(150vh);
-  }
-  100% {
-    transform: translateY(150vh);
-  }
 }
 
 // Snow
@@ -47,14 +35,14 @@
   opacity: 1;
   bottom: 100%;
   transform-origin: 100% 50%;
-  animation-name: rain;
+  animation-name: drops;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   z-index: 100;
 }
 
-@keyframes snow {
+@keyframes drops {
   0% {
     transform: translateY(0vh);
   }
@@ -65,6 +53,8 @@
     transform: translateY(150vh);
   }
 }
+
+
 
 // Clouds
 

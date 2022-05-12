@@ -69,7 +69,6 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
-  font-weight: 400;
 }
 
 /*--------------------*/
@@ -80,24 +79,13 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: 100%;
   transform-origin: 100% 50%;
-  animation-name: rain;
+  animation-name: drops;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   z-index: 100;
 }
 
-@keyframes rain {
-  0% {
-    transform: translateY(0vh);
-  }
-  75% {
-    transform: translateY(150vh);
-  }
-  100% {
-    transform: translateY(150vh);
-  }
-}
 .snow {
   width: 100%;
   top: 0;
@@ -117,14 +105,14 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
   bottom: 100%;
   transform-origin: 100% 50%;
-  animation-name: rain;
+  animation-name: drops;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   z-index: 100;
 }
 
-@keyframes snow {
+@keyframes drops {
   0% {
     transform: translateY(0vh);
   }
@@ -208,7 +196,6 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #fff;
-  overflow: hidden;
 }
 
 h1, h2, h3, span {
@@ -216,8 +203,9 @@ h1, h2, h3, span {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 45px;
   margin-bottom: 16px;
+  text-shadow: 0 0 black;
 }
 @media screen and (min-width: 768px) {
   h1 {
@@ -235,12 +223,18 @@ h2 {
 }
 
 h3 {
-  font-size: 35px;
+  font-size: 30px;
+}
+@media screen and (min-width: 768px) {
+  h3 {
+    font-size: 35px;
+  }
 }
 
 p {
   font-size: 20px;
   line-height: 30px;
+  text-shadow: 0 0 black;
 }
 @media screen and (min-width: 768px) {
   p {
@@ -268,15 +262,71 @@ img {
   }
 }
 
+.ham_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  width: 40px;
+  height: 40px;
+  background: none;
+  z-index: 1000;
+  position: relative;
+}
+.hamburger span {
+  background: #fff;
+  border-radius: 8px;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  transition: top 0.3s ease-in-out 0.4s, transform 0.4s ease-in-out, opacity 0.3s ease-in-out 0.3s, left 0.3s ease-in-out;
+}
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+.hamburger span:nth-child(2), .hamburger span:nth-child(4) {
+  top: 12px;
+}
+.hamburger span:nth-child(3) {
+  top: 24px;
+}
+.hamburger.open span:nth-child(1) {
+  top: 12px;
+  transform: rotate(405deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  top: 12px;
+  transform: rotate(315deg);
+}
+@media screen and (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+}
+
 .forecast {
-  height: 100vh;
-  padding: 50px 0;
+  padding: 30px 0;
   position: relative;
   z-index: 100;
   transition: background 0.3s ease;
 }
+@media screen and (min-width: 360px) {
+  .forecast {
+    height: 100vh;
+  }
+}
+@media screen and (min-width: 768px) {
+  .forecast {
+    padding: 50px 0;
+  }
+}
 .forecast.sunny {
-  background: linear-gradient(180deg, #7CB8FF 0%, #DFFFFB 100%);
+  background: linear-gradient(180deg, #7CB8FF 0%, #DFFFFB 125%);
 }
 .forecast.sunny .weather__icon {
   border-radius: 50%;
@@ -286,7 +336,7 @@ img {
   transform: translateX(0%);
   opacity: 1;
 }
-.forecast.snow {
+.forecast.snowy {
   background: linear-gradient(180deg, #347BCF 0%, #97c1ff 56.77%);
 }
 .forecast.sunset {
@@ -376,7 +426,13 @@ img {
 }
 
 .date__info {
-  margin-bottom: 76px;
+  text-shadow: 0 0 black;
+  margin-bottom: 36px;
+}
+@media screen and (min-width: 768px) {
+  .date__info {
+    margin-bottom: 76px;
+  }
 }
 
 .calendar_day {
@@ -384,7 +440,7 @@ img {
 }
 
 .city__info {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 
 .weather__icon {
@@ -392,13 +448,33 @@ img {
   width: 100px;
   height: 100px;
   top: 8rem;
-  right: 46rem;
+  right: 3rem;
   z-index: 5;
+}
+@media screen and (min-width: 640px) {
+  .weather__icon {
+    right: 12rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .weather__icon {
     width: 136px;
     height: 136px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .weather__icon {
+    right: 40rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .weather__icon {
+    right: 46rem;
+  }
+}
+@media screen and (min-width: 1536px) {
+  .weather__icon {
+    right: 56rem;
   }
 }
 
@@ -412,7 +488,12 @@ img {
 .feels__item {
   display: flex;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  .feels__item {
+    margin-bottom: 70px;
+  }
 }
 
 .feels_like {
@@ -432,8 +513,14 @@ img {
 .weather__details {
   display: flex;
   align-items: center;
-  gap: 80px;
-  font-size: 20px;
+  gap: 32px;
+  font-size: 16px;
+}
+@media screen and (min-width: 768px) {
+  .weather__details {
+    font-size: 20px;
+    gap: 80px;
+  }
 }
 
 .details__item {
@@ -444,6 +531,12 @@ img {
   content: "";
   display: block;
   height: 48px;
+  max-width: 45%;
+}
+@media screen and (min-width: 768px) {
+  .details__item::before {
+    max-width: 100%;
+  }
 }
 .details__item.humidity::before {
   width: 34px;
@@ -474,15 +567,49 @@ img {
 .search {
   position: fixed;
   top: 0;
-  right: 0;
   height: 100%;
   width: 100%;
-  max-width: 550px;
-  padding: 50px 62px 0 60px;
+  max-width: 100%;
+  padding: 100px 20px;
   backdrop-filter: blur(30px);
   z-index: 999;
-  border-radius: 5% 0 0 0;
   background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
+  visibility: hidden;
+  right: -100%;
+  transition: right 0.3s ease, visibility 0.3s ease;
+}
+.search.show {
+  visibility: visible;
+  right: 0;
+}
+@media screen and (min-width: 480px) {
+  .search {
+    padding: 100px 50px;
+  }
+}
+@media screen and (min-width: 640px) {
+  .search {
+    padding: 100px 60px;
+    max-width: 460px;
+    border-radius: 5% 0 0 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .search {
+    padding: 120px 60px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .search {
+    visibility: visible;
+    right: 0;
+    padding-top: 50px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .search {
+    max-width: 550px;
+  }
 }
 
 .search__item {

@@ -7,17 +7,27 @@ const weather = document.querySelector('.forecast'),
       wind = weather.querySelector('.details__data.wind'),
       cityName = weather.querySelector('.main_city'),
       searchInput = weather.querySelector('.search__input'),
-      searchBtn = weather.querySelector('.search__btn');
+      searchBtn = weather.querySelector('.search__btn'),
+      hamburger = weather.querySelector('.hamburger'),
+      searchSection = weather.querySelector('.search')
 
+// Search input
 searchInput.addEventListener('keydown', e => {
   if (e.key == 'Enter') {
     searchCity()
   }
 });
 
+// Search Button
 searchBtn.addEventListener('click', e => {
   e.preventDefault();
   searchCity()
+});
+
+// Hamburger
+hamburger.addEventListener('click', () => {
+  searchSection.classList.toggle('show');
+  hamburger.classList.toggle('open')
 })
 
 // Search of City
@@ -27,6 +37,8 @@ function searchCity() {
   if (!val) return false;
   initWeather(val);
   searchInput.value = '';
+  searchSection.classList.remove('show');
+  hamburger.classList.remove('open');
 }
 
 // Temperature to Celsius
@@ -62,14 +74,14 @@ function initWeather(city = 'Odessa') {
       // Weather conditions
 
       const drops = document.querySelector('.drops');
-      const snow = document.querySelector('.snow');
+      const flakes = document.querySelector('.snow');
 
       weather.classList.remove('rainy');
-      weather.classList.remove('snow');
+      weather.classList.remove('snowy');
       if (drops) {
         drops.remove()
-      } else if (snow) {
-        snow.remove()
+      } else if (flakes) {
+        flakes.remove()
       }
 
       if (data.weather[0].main == 'Clear') {
@@ -78,9 +90,14 @@ function initWeather(city = 'Odessa') {
         weather.classList.add('rainy');
         rain()
       } else if (data.weather[0].main == 'Snow') {
-        weather.classList.add('snow');
+        weather.classList.add('snowy');
         snow()
       }
+
+      console.log(data);
+
+      searchSection.classList.remove('show');
+      hamburger.classList.remove('open');
     })
 }
 
@@ -199,16 +216,16 @@ function rain() {
 function snow() {
   let flake;
   let counter = 50;
-  const snow = document.createElement('div');
-  snow.classList.add('snow');
+  const flakes = document.createElement('div');
+  flakes.classList.add('snow');
   for (let i = 0; i < counter; i++) {
     flake = document.createElement("div");
     flake.classList.add('flake');
     flake.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
     flake.style.animationDuration = 5 + Math.random() * 5 + "s";
     flake.style.animationDelay = Math.random() * 5 + "s";
-    snow.append(flake);
-    weather.append(snow)
+    flakes.append(flake);
+    weather.append(flakes)
   }
 }
 
