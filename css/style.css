@@ -364,6 +364,13 @@ img {
 .forecast.sunset .city__list_item:hover {
   background: #6A6661;
 }
+.forecast.sunset .search__input {
+  background: #fff;
+  color: #977272;
+}
+.forecast.sunset .search__input::placeholder {
+  color: #977272;
+}
 .forecast.rainy {
   background: linear-gradient(180deg, #969696 0%, #DFFFFB 100%);
 }
@@ -512,7 +519,6 @@ img {
 
 .weather__details {
   display: flex;
-  align-items: center;
   gap: 32px;
   font-size: 16px;
 }
@@ -571,7 +577,11 @@ img {
   width: 100%;
   max-width: 100%;
   padding: 100px 20px;
-  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(40px);
+  -moz-backdrop-filter: blur(40px);
+  -o-backdrop-filter: blur(40px);
+  -ms-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
   z-index: 999;
   background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0%, rgba(239, 255, 253, 0) 100%);
   visibility: hidden;
@@ -626,10 +636,14 @@ img {
   font-size: 15px;
   color: #64729A;
   background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
+  transition: border 0.3s ease;
 }
 .search__input::placeholder {
   font-size: 15px;
   color: #64729A;
+}
+.search__input.error {
+  border: 1px solid #E24A62;
 }
 
 .search__btn {
@@ -640,6 +654,21 @@ img {
   height: 50px;
   width: 55px;
   border-radius: 0 18px 18px 0;
+}
+
+.error_message {
+  color: #E24A62;
+  position: absolute;
+  font-size: 16px;
+  top: 0;
+  opacity: 0;
+  left: 20px;
+  transition: top 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+.error_message.show {
+  top: -20px;
+  opacity: 1;
 }
 
 .city__list {

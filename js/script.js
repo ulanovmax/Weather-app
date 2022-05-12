@@ -7,21 +7,22 @@ const weather = document.querySelector('.forecast'),
       wind = weather.querySelector('.details__data.wind'),
       cityName = weather.querySelector('.main_city'),
       searchInput = weather.querySelector('.search__input'),
-      searchBtn = weather.querySelector('.search__btn'),
       hamburger = weather.querySelector('.hamburger'),
       searchSection = weather.querySelector('.search')
 
-// Search input
+searchSection.addEventListener('click', e => {
+  e.preventDefault();
+  const targ = e.target;
+  if (targ && targ.matches('.search__btn')) {
+    searchCity()
+  }
+})
+
+// Search with 'Enter'
 searchInput.addEventListener('keydown', e => {
   if (e.key == 'Enter') {
     searchCity()
   }
-});
-
-// Search Button
-searchBtn.addEventListener('click', e => {
-  e.preventDefault();
-  searchCity()
 });
 
 // Hamburger
@@ -37,9 +38,35 @@ function searchCity() {
   if (!val) return false;
   initWeather(val);
   searchInput.value = '';
-  searchSection.classList.remove('show');
-  hamburger.classList.remove('open');
 }
+
+// List of sities
+
+const cityItems = weather.querySelector('.city__list');
+
+function cityList(city, i) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
+    .then(res => res.json())
+    .then(data => {
+      const names = weather.querySelectorAll('.city_name');
+      const temps = weather.querySelectorAll('.city_list_deg'); 
+
+      names[i].textContent = capitalize(data.name);
+      temps[i].textContent = temp(data.main.temp) + '°';
+    })
+}
+
+cityList('New York',0);
+cityList('London',1);
+cityList('moscow',2);
+
+cityItems.addEventListener('click', e => {
+  e.preventDefault();
+  let targ = e.target ;
+  if (targ && targ.matches('.city__list_item')) {
+    initWeather(targ.querySelector('.city_name').textContent)
+  }
+})
 
 // Temperature to Celsius
 
@@ -54,6 +81,8 @@ function capitalize(str) {
   if (!str) return str;
   return str[0].toUpperCase() + str.slice(1);
 }
+
+const error = weather.querySelector('.error_message');
 
 function initWeather(city = 'Odessa') {
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
@@ -94,42 +123,18 @@ function initWeather(city = 'Odessa') {
         snow()
       }
 
-      console.log(data);
-
       searchSection.classList.remove('show');
       hamburger.classList.remove('open');
+      searchInput.classList.remove('error');
+      error.classList.remove('show');
+    })
+    .catch(() => {
+      searchInput.classList.add('error');
+      error.classList.add('show');
     })
 }
 
 initWeather()
-
-// List of sities
-
-const cityItems = weather.querySelector('.city__list');
-
-function cityList(city, i) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3e9e0c88e77a6c7b422e45d43c267061`)
-    .then(res => res.json())
-    .then(data => {
-      const names = weather.querySelectorAll('.city_name');
-      const temps = weather.querySelectorAll('.city_list_deg'); 
-
-      names[i].textContent = capitalize(data.name);
-      temps[i].textContent = temp(data.main.temp) + '°';
-    })
-}
-
-cityList('New York',0);
-cityList('London',1);
-cityList('moscow',2);
-
-cityItems.addEventListener('click', e => {
-  e.preventDefault();
-  let targ = e.target ;
-  if (targ && targ.matches('.city__list_item')) {
-    initWeather(targ.querySelector('.city_name').textContent)
-  }
-})
 
 // Date
 
