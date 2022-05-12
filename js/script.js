@@ -136,6 +136,7 @@ function initWeather(city = 'Odessa') {
 
 initWeather()
 
+
 // Date
 
 const dateTime = weather.querySelector('.date_time'),
@@ -167,6 +168,7 @@ function formatAMPM(date) {
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12; // the hour '0' should be '12'
+  hours = hours < 10 ? '0'+hours : hours;
   minutes = minutes < 10 ? '0'+minutes : minutes;
   const strTime = `${hours}:${minutes} ${ampm}`
   return strTime;
@@ -210,7 +212,7 @@ function rain() {
     drop.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
     drop.style.animationDuration = 0.2 + Math.random() * 0.3 + "s";
     drop.style.animationDelay = Math.random() * 5 + "s";
-
+    document.body.style.overflow = 'hidden'
     drops.append(drop);
     weather.append(drops);
   }
@@ -229,9 +231,20 @@ function snow() {
     flake.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
     flake.style.animationDuration = 5 + Math.random() * 5 + "s";
     flake.style.animationDelay = Math.random() * 5 + "s";
+    document.body.style.overflow = 'hidden'
     flakes.append(flake);
-    weather.append(flakes)
+    weather.append(flakes);
   }
+}
+
+// Preloader
+
+window.onload = function () {
+  document.body.classList.add('loaded');
+  window.setTimeout(function () {
+      document.body.classList.add('loaded');
+      document.body.classList.remove('loaded_hiding');
+  }, 500);
 }
 
 

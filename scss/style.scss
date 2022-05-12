@@ -81,49 +81,6 @@ img {
   align-items: center;
 }
 
-.hamburger {
-  width: 40px;
-  height: 40px;
-  background: none;
-  z-index: 1000;
-  position: relative;
-  span {
-    background: #fff;
-    border-radius: 8px;
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    transition: top $trans ease-in-out 0.4s, transform 0.4s ease-in-out, opacity $trans ease-in-out $trans, left $trans ease-in-out;
-    &:nth-child(1) {
-      top: 0;
-    }
-    &:nth-child(2), &:nth-child(4) {
-      top: 12px;
-    }
-    &:nth-child(3) {
-      top: 24px;
-    }
-  }
-  &.open {
-    span {
-      &:nth-child(1) {
-        top: 12px;
-        transform: rotate((360+45) + 0deg);
-      }
-      &:nth-child(2) {
-        opacity: 0;
-      }
-      &:nth-child(3) {
-        top: 12px;
-        transform: rotate((360-45) + 0deg);
-      }
-    }
-  }
-  @media screen and (min-width: 1024px) {
-    display: none;
-  }
-}
-
 // Weather Conditions
 
 .forecast {
