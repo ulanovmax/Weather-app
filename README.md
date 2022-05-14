@@ -1,4 +1,4 @@
-# Weather-app
+# Weather App
 Search weather in your city
 
 Get the current weather from different places around the world.
