@@ -16,16 +16,6 @@
 
 // Snow
 
-.snow {
-  width: 100%;
-  top: 0;
-  left: 0;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  position: fixed;
-  z-index: 0;
-}
-
 .flake {
   width: 5px;
   height: 5px;

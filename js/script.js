@@ -32,7 +32,6 @@ hamburger.addEventListener('click', () => {
 })
 
 // Search of City
-
 function searchCity() {
   const val = searchInput.value;
   if (!val) return false;
@@ -41,7 +40,6 @@ function searchCity() {
 }
 
 // List of sities
-
 const cityItems = weather.querySelector('.city__list');
 
 function cityList(city, i) {
@@ -115,12 +113,15 @@ function initWeather(city = 'Odessa') {
 
       if (data.weather[0].main == 'Clear') {
         weather.classList.add('sunny');
+
       } else if (data.weather[0].main == 'Rain') {
         weather.classList.add('rainy');
-        rain()
+        drops('drop', 0.2, 'drop');
+
       } else if (data.weather[0].main == 'Snow') {
+
         weather.classList.add('snowy');
-        snow()
+        drops('flake', 5, 'flake');
       }
 
       searchSection.classList.remove('show');
@@ -135,7 +136,6 @@ function initWeather(city = 'Odessa') {
 }
 
 initWeather()
-
 
 // Date
 
@@ -153,11 +153,7 @@ const days = [
 ];
 
 function setZero(num) {
-  if (num > 10) {
-    return num
-  } else {
-    '0' + num
-  } 
+  return num < 10 ? `0${num}` : num
 }
 
 const date = new Date();
@@ -167,19 +163,13 @@ function formatAMPM(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12; // the hour '0' should be '12'
-  hours = hours < 10 ? '0'+hours : hours;
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  const strTime = `${hours}:${minutes} ${ampm}`
-  return strTime;
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const time = setZero(hours) + ':' + setZero(minutes) + ' ' + ampm;
+  return time;
 }
 
 dateTime.textContent = formatAMPM(date);
-
-setTimeout(() => {
-  formatAMPM(date);
-}, 1000); 
-
 dateDay.textContent = `${days[n]} ${date.getDate()}th, ${date.getFullYear()}`;
 
 // Time
@@ -199,41 +189,22 @@ if (hour >= 0 && hour < 5) {
   weather.classList.add('night');
 }
 
-// Rain Animation
 
-function rain() {
-  let drop;
+// Weather Animation
+
+function drops(item, dur, classname) {
   let counter = 50;
-  const drops = document.createElement('div');
-  drops.classList.add('drops');
+  const items = document.createElement('div');
+  items.classList.add('weather_drops');
   for (let i = 0; i < counter; i++) {
-    drop = document.createElement("div");
-    drop.classList.add('drop');
-    drop.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
-    drop.style.animationDuration = 0.2 + Math.random() * 0.3 + "s";
-    drop.style.animationDelay = Math.random() * 5 + "s";
-    document.body.style.overflow = 'hidden'
-    drops.append(drop);
-    weather.append(drops);
-  }
-}
-
-// Snow Animation
-
-function snow() {
-  let flake;
-  let counter = 50;
-  const flakes = document.createElement('div');
-  flakes.classList.add('snow');
-  for (let i = 0; i < counter; i++) {
-    flake = document.createElement("div");
-    flake.classList.add('flake');
-    flake.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
-    flake.style.animationDuration = 5 + Math.random() * 5 + "s";
-    flake.style.animationDelay = Math.random() * 5 + "s";
-    document.body.style.overflow = 'hidden'
-    flakes.append(flake);
-    weather.append(flakes);
+    item = document.createElement("div");
+    item.classList.add(classname);
+    item.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+    item.style.animationDuration = dur + Math.random() * dur + "s";
+    item.style.animationDelay = Math.random() * 5 + "s";
+    document.body.style.overflow = 'hidden';
+    items.append(item);
+    weather.append(items);
   }
 }
 
